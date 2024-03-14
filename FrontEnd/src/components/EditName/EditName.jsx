@@ -1,3 +1,5 @@
+import Button from "../Button/Button";
+
 const EditName = () => {
   return (
     <section className="sign-in-content">
@@ -16,9 +18,8 @@ const EditName = () => {
           <label htmlFor="lastname">Last Name</label>
           <input type="text" id="lastname" />
         </div>
-
-        <button className="sign-in-button">Save</button>
-        <button className="sign-in-button">Cancel</button>
+        <Button btnText={"Save"}/>
+        <Button btnText={"Cancel"}/>
       </form>
     </section>
   );

@@ -1,6 +1,7 @@
 /* eslint-disable no-empty */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "../Button/Button";
 
 const SignIn = () => {
   // initialisation de variables pour le formulaire de conexion
@@ -81,8 +82,7 @@ const SignIn = () => {
             />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-
-          <button className="sign-in-button">Sign In</button>
+          <Button btnText={"Sign In"}/>
         </form>
         {erreur && <p className="errorConexion">{erreur}</p>}
       </section>
