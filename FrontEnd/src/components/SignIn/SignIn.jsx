@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 
 //Variables importées pour l'utilisation redux
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/loginSlice";
 
 const SignIn = () => {
-
   // initialisation de variables pour le formulaire de conexion
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,25 +19,27 @@ const SignIn = () => {
   const handlelogin = async (e) => {
     e.preventDefault();
     //Requette de conexion utilisateur
-    try {
-      const response = await fetch("http://localhost:3001/api/v1/user/login",{
+      const response = await fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
-        headers:{
+        headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({email,password}),
+        body: JSON.stringify({ email, password }),
       });
       if (response.ok) {
         // Si la requette abutit je transforme la reponse en JSON et fait une redirection /user
-        const userData = await response.json()
+        const userData = await response.json();
         // J'envoi les donnée de l'utilisateur grace a dispatch "loginUser/payload"
-        dispatch(loginUser(userData))
+        await dispatch(loginUser(userData));
+        if (remenberMe) {
+          localStorage.setItem('token',userData.body.token)
+          console.log(userData.body.token);
+        }
         navigate("/user");
+      }else {
+        console.error("Erreur de serveur: " + response.statusText);
+        setErreur("Erreur de serveur: " + response.statusText);
       }
-    } catch (error) {
-      console.error("erreur de connexion a la base de donnée", error);
-      setErreur("Erreur de conexion");
-    }
   };
 
   const handleRememberMe = (e) => {
