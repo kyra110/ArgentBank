@@ -2,8 +2,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
-
+''
 const SignIn = () => {
+
   // initialisation de variables pour le formulaire de conexion
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,39 +14,18 @@ const SignIn = () => {
 
   const handlelogin = async (e) => {
     e.preventDefault();
-    console.log(email, password, remenberMe);
-    
-    fetch("http://localhost:3001/api/v1/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("La connexion à échoué" + response.status);
-        }
-        console.log("Connexion réussie" + response.status);
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        const token = data.body.token;
-        console.log(token);
-        if (token) {
-          navigate("/user");
-        }
-      })
-      .catch((error) => {
-        console.error("Le User POST ne fonctionne pas ", error.message);
-        setErreur("Erreur de connexion");
-      });
+    try {
+      navigate("/user");
+    } catch (error) {
+      console.error("erreur de connexion a la base de donnée", error);
+      setErreur("Erreur de conexion");
+    }
   };
 
   const handleRememberMe = (e) => {
     setRemenberMe(e.target.checked);
   };
+
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
@@ -82,7 +62,7 @@ const SignIn = () => {
             />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <Button btnText={"Sign In"}/>
+          <Button btnText={"Sign In"} />
         </form>
         {erreur && <p className="errorConexion">{erreur}</p>}
       </section>
