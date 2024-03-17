@@ -12,11 +12,11 @@ const EditName = () => {
         </div>
         <div className="input-wrapper">
           <label htmlFor="firstname">First Name</label>
-          <input type="text" id="firstname" />
+          <input type="text" id="firstname" disabled/>
         </div>
         <div className="input-wrapper">
           <label htmlFor="lastname">Last Name</label>
-          <input type="text" id="lastname" />
+          <input type="text" id="lastname" disabled/>
         </div>
         <Button btnText={"Save"}/>
         <Button btnText={"Cancel"}/>
