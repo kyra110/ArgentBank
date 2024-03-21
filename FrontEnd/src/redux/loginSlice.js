@@ -6,29 +6,34 @@ export const loginSlice = createSlice({
   name: "login",
   initialState: {
     userToken: null,
-    userProfil:null,
+    userProfil: null,
   },
   reducers: {
     //Action pour connecter l'utilisateur
-    loginUser:(state, action) =>{
+    loginUser: (state, action) => {
       state.userToken = action.payload; // Stokera les informations avec dispatch
     },
     // Action pour deconecter l'utilisateur
-    logoutUser:(state) =>{
+    logoutUser: (state) => {
       state.userToken = null; // Remet a zéro les information user
     },
     //Action pour stoker les données utilisateur
-    infoUser:(state, action) =>{
+    infoUser: (state, action) => {
       state.userProfil = action.payload; // Stokera les informations avec dispatch
     },
     // Action pour deconecter l'utilisateur
-    logoutInfoUser:(state) =>{
+    logoutInfoUser: (state) => {
       state.userProfil = null; // Remet a zéro les information user
     },
-
+    //Action pour stoker les données utilisateur
+    infoUserName: (state, action) => {
+      console.log("voici le payload info user Name :", action.payload);
+      state.userProfil.userName = action.payload; // Stokera les informations avec dispatch
+    },
   },
 });
 
-export const { loginUser, logoutUser, infoUser } = loginSlice.actions;
+export const { loginUser, logoutUser, infoUser, infoUserName } =
+  loginSlice.actions;
 
 export default loginSlice;

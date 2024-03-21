@@ -6,6 +6,7 @@ import Button from "../Button/Button";
 //Variables importées pour l'utilisation redux
 import { useDispatch,} from "react-redux";
 import { loginUser,infoUser } from "../../redux/loginSlice";
+import { useSelector } from "react-redux";
 
 const SignIn = () => {
   // initialisation de variables pour le formulaire de conexion
@@ -15,6 +16,7 @@ const SignIn = () => {
   const [erreur, setErreur] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch(); // Utilise useDispatch
+  const loginStoreToken = useSelector((state) => state.login.userToken);
 
   const handlelogin = async (e) => {
     e.preventDefault();
@@ -30,17 +32,16 @@ const SignIn = () => {
         // Si la requette abutit je transforme la reponse en JSON et fait une redirection /user
         const userData = await response.json();
         // J'envoi les donnée de l'utilisateur grace a dispatch "loginUser/payload"
-        await dispatch(loginUser(userData.body.token));
-        const token = userData.body.token
-        console.log(token);
+        await dispatch(loginUser(userData.body.token));     
+        console.log("token du store",loginStoreToken);
         if (remenberMe) {
-          localStorage.setItem('token',token)
+          localStorage.setItem('token',loginStoreToken)
         }
         /***Deuxième requètte pour les infos user***/ 
         const userInfoResponse = await fetch("http://localhost:3001/api/v1/user/profile",{
           method:"POST",
           headers :{
-            "Authorization": `Bearer ${token}`,
+            "Authorization": `Bearer ${loginStoreToken}`,
           }
         })
         if (userInfoResponse.ok) {
