@@ -7,9 +7,13 @@ import { infoUserName } from "../../redux/loginSlice";
 const EditName = () => {
   // enregistrement de la slice login depuis le store dans une variable
   const loginStore = useSelector((state) => state.login);
-
-  /*Faire le PUT pour modifier le userName en base de données*/
-  const [newUserName, setNewUserName] = useState("");
+  const storeUserProfil = loginStore.userProfil
+  /****Faire le PUT pour modifier le userName en base de données****/
+  // Initialisation de la variable avec le store et onChange pour récupérer la valeur de l'input 
+  const [newUserName, setNewUserName] = useState(storeUserProfil.userName);
+  const handleChangeUserName = (e)=>{
+     setNewUserName(e.target.value)
+  }
   console.log(newUserName);
   console.log(loginStore.userProfil);
   const dispatch = useDispatch(); // Utilise useDispatch
@@ -44,10 +48,10 @@ const EditName = () => {
           <label htmlFor="username">Username</label>
           <input
             value={newUserName}
-            onChange={(e) => setNewUserName(e.target.value)}
+            onChange={handleChangeUserName}
             type="text"
             id="username"
-            placeholder={loginStore.userProfil.userName}
+            placeholder="Tapez votre username"
           />
         </div>
         <div className="input-wrapper">
@@ -56,7 +60,7 @@ const EditName = () => {
             type="text"
             id="firstname"
             disabled
-            placeholder={loginStore.userProfil.firstName}
+            value={storeUserProfil.firstName}
           />
         </div>
         <div className="input-wrapper">
@@ -65,7 +69,7 @@ const EditName = () => {
             type="text"
             id="lastname"
             disabled
-            placeholder={loginStore.userProfil.lastName}
+            value={storeUserProfil.lastName}
           />
         </div>
         <Button btnText={"Save"} />

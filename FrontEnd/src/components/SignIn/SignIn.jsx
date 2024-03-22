@@ -6,7 +6,6 @@ import Button from "../Button/Button";
 //Variables importées pour l'utilisation redux
 import { useDispatch,} from "react-redux";
 import { loginUser,infoUser } from "../../redux/loginSlice";
-import { useSelector } from "react-redux";
 
 const SignIn = () => {
   // initialisation de variables pour le formulaire de conexion
@@ -16,8 +15,7 @@ const SignIn = () => {
   const [erreur, setErreur] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch(); // Utilise useDispatch
-  const loginStoreToken = useSelector((state) => state.login.userToken);
-
+  
   const handlelogin = async (e) => {
     e.preventDefault();
     //Requette de conexion utilisateur
@@ -32,16 +30,16 @@ const SignIn = () => {
         // Si la requette abutit je transforme la reponse en JSON et fait une redirection /user
         const userData = await response.json();
         // J'envoi les donnée de l'utilisateur grace a dispatch "loginUser/payload"
-        await dispatch(loginUser(userData.body.token));     
-        console.log("token du store",loginStoreToken);
+        const token = userData.body.token
+        await dispatch(loginUser(token));     
         if (remenberMe) {
-          localStorage.setItem('token',loginStoreToken)
+          localStorage.setItem('token',token)
         }
         /***Deuxième requètte pour les infos user***/ 
         const userInfoResponse = await fetch("http://localhost:3001/api/v1/user/profile",{
           method:"POST",
           headers :{
-            "Authorization": `Bearer ${loginStoreToken}`,
+            "Authorization": `Bearer ${token}`,
           }
         })
         if (userInfoResponse.ok) {
@@ -55,14 +53,14 @@ const SignIn = () => {
             userName: userInfo.body.userName
           }
           console.log("voici les infos du user :", userData);
-          dispatch(infoUser(userData))
+          await dispatch(infoUser(userData))
           navigate("/user");
         }else{
           console.error("Erreur lors de la récupération des données de l'utilisateur:", userInfoResponse.statusText);
         }
       }else {
         console.error("Erreur de serveur: " + response.statusText);
-        setErreur("Erreur de serveur: " + response.statusText);
+        setErreur("Identifiants incorrects");
       }
   };
 

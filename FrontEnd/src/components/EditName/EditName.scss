@@ -6,3 +6,10 @@
     margin-right: 15px;
   }
 }
+
+input:disabled {
+  cursor: not-allowed;
+  background-color: silver;
+  color: #4f4f4f;
+  border: 2px solid #a0a0a0;
+}
