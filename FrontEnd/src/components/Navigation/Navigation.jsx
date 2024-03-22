@@ -2,9 +2,10 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/argentBankLogo.png";
 
 //Variable pour manipuler le store redux
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 
 const Navigation = () => {
+  const dispatch = useDispatch()
   const loginStore = useSelector((state) => state.login);
   const token = useSelector((state)=> state.login.userToken)
   if (token) {
@@ -17,6 +18,7 @@ const Navigation = () => {
   const handleRedirectHome = ()=> {
     localStorage.removeItem("token")
     console.log("Token suprimé du local storage");
+    dispatch(loginStore("null"))
   };
   return (
     <nav className="main-nav">

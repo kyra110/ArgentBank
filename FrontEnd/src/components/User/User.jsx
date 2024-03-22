@@ -1,12 +1,23 @@
-import EditName from "../EditName/EditName";
-
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const User = () => {
+  const username = useSelector(state =>(state.login.userProfil.userName))
+  // Gestion de l'affichage du formulaire pour modifier son username
+  const navigate = useNavigate();
+  const handleToogle = () => {
+    navigate("/editUser");
+  };
   return (
     <main className="main bg-dark2">
-      <EditName/>
       <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
-        <button className="edit-button">Edit Name</button>
+        <h1>
+          Welcome back
+          <br />
+          {username}!
+        </h1>
+        <button className="edit-button" onClick={handleToogle}>
+          Edit Name
+        </button>
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">

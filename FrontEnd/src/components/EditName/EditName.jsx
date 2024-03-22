@@ -1,23 +1,35 @@
 import { useState } from "react";
 import Button from "../Button/Button";
+import { useNavigate } from "react-router-dom";
+
 //Variable pour manipuler le store redux
 import { useSelector, useDispatch } from "react-redux";
 import { infoUserName } from "../../redux/loginSlice";
 
 const EditName = () => {
+  const navigate = useNavigate();
   // enregistrement de la slice login depuis le store dans une variable
   const loginStore = useSelector((state) => state.login);
-  const storeUserProfil = loginStore.userProfil
+  const storeUserProfil = loginStore.userProfil;
+  const dispatch = useDispatch(); // Utilise useDispatch
   /****Faire le PUT pour modifier le userName en base de données****/
-  // Initialisation de la variable avec le store et onChange pour récupérer la valeur de l'input 
+  // Initialisation de la variable avec le store et onChange pour récupérer la valeur de l'input
   const [newUserName, setNewUserName] = useState(storeUserProfil.userName);
-  const handleChangeUserName = (e)=>{
-     setNewUserName(e.target.value)
-  }
+  const handleChangeUserName = (e) => {
+    setNewUserName(e.target.value);
+  };
   console.log(newUserName);
   console.log(loginStore.userProfil);
-  const dispatch = useDispatch(); // Utilise useDispatch
-  const handlePutProfile = async (e) => {
+
+  
+  /*******************handleCancel*************************/
+  const handleCancel = () => {
+    navigate("/user");
+  };
+  
+  
+  /********************handleForm****************************/
+  const handleForm = async (e) => {
     e.preventDefault();
     //Récupération du token dans le store
     const token = loginStore.userToken;
@@ -28,10 +40,10 @@ const EditName = () => {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userName:newUserName }),
+      body: JSON.stringify({ userName: newUserName }),
     });
     if (response.ok) {
-      dispatch(infoUserName(newUserName ));
+      dispatch(infoUserName(newUserName));
       const data = await response.json();
       console.log("le user name a bien été modifié", data);
     } else {
@@ -39,11 +51,11 @@ const EditName = () => {
     }
   };
   return (
-    <section className="sign-in-content">
+    <main className="main bg-dark">
+    <section className="sign-in-content toogle-edit-name">
       <i className="fa fa-user-circle sign-in-icon"></i>
-
       <h1>Edit User info</h1>
-      <form onSubmit={handlePutProfile}>
+      <form onSubmit={handleForm} onClick={(event) => event.stopPropagation()}>
         <div className="input-wrapper">
           <label htmlFor="username">Username</label>
           <input
@@ -72,10 +84,11 @@ const EditName = () => {
             value={storeUserProfil.lastName}
           />
         </div>
-        <Button btnText={"Save"} />
-        <Button btnText={"Cancel"} />
+        <Button  btnText={"Save"} />
       </form>
+        <Button  btnText={"Cancel"} onClick={handleCancel}/>
     </section>
+    </main>
   );
 };
 
