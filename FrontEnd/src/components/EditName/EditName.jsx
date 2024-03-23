@@ -84,9 +84,9 @@ const EditName = () => {
             value={storeUserProfil.lastName}
           />
         </div>
-        <Button  btnText={"Save"} />
+        <Button  btnText={"Save"} className={"sign-in-button"}/>
       </form>
-        <Button  btnText={"Cancel"} onClick={handleCancel}/>
+        <Button  btnText={"Cancel"} onClick={handleCancel} className={"sign-in-button"}/>
     </section>
     </main>
   );

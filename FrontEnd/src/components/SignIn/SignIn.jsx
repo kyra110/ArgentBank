@@ -104,7 +104,7 @@ const SignIn = () => {
             />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <Button btnText={"Sign In"} />
+          <Button btnText={"Sign In"} className={"sign-in-button"}/>
         </form>
         {erreur && <p className="errorConexion">{erreur}</p>}
       </section>
