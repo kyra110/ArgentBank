@@ -17,6 +17,7 @@
 .main-nav a {
   font-weight: bold;
   color: #2c3e50;
+  // ajouter un media query pour le format mobile reduire la font-size a 0.8rem
 }
 
 .main-nav a.router-link-exact-active {
@@ -43,4 +44,15 @@
 .main-nav-logo-image {
   max-width: 100%;
   width: 200px;
+}
+
+/*Media Queries Mobile*/
+@media only screen and (max-width: 600px) {
+  .main-nav-logo-image {
+    width: 150px;
+  }
+  .main-nav a {
+    font-size: 0.8rem;
+    
+  }
 }
