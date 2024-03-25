@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/argentBankLogo.png";
-
+import { LuLogOut } from "react-icons/lu";
 //Variable pour manipuler le store redux
 import { useSelector,useDispatch } from "react-redux";
 
@@ -39,7 +39,7 @@ const Navigation = () => {
         {/* Conditionnellement rendu le lien "Sign In" ou "Sign Out" */}
         {token ? (
           <NavLink className="main-nav-item" to="/" onClick={handleRedirectHome}>
-            <i className="fa fa-user-circle"></i>
+            <LuLogOut />
             Sign Out
           </NavLink>
         ) : (
