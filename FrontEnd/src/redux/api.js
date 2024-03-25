@@ -1,5 +1,3 @@
-
-
 // Récupère le token de connexion
 export async function logUser(email, password) {
   const response = await fetch("http://localhost:3001/api/v1/user/login", {
@@ -11,6 +9,7 @@ export async function logUser(email, password) {
   });
   return response.json();
 }
+
 // Récupère le Profil Utilisateur
 export async function getUserProfile(token) {
   const response = await fetch("http://localhost:3001/api/v1/user/profile", {
@@ -21,8 +20,8 @@ export async function getUserProfile(token) {
   });
   return response.json();
 }
-// Requette pour la modification du Username
 
+// Requette pour la modification du Username
 export async function changeUsername (newUserName,token){
   const response = await fetch("http://localhost:3001/api/v1/user/profile", {
     method: "PUT",

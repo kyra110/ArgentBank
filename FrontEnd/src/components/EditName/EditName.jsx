@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 //Variable pour manipuler le store redux
 import { useSelector, useDispatch } from "react-redux";
 import { infoUserName } from "../../redux/loginSlice";
+//Importation de la fonction pour le PUT
 import { changeUsername } from "../../redux/api";
 
 const EditName = () => {
@@ -13,8 +14,7 @@ const EditName = () => {
   const loginStore = useSelector((state) => state.login);
   const storeUserProfil = loginStore.userProfil;
   const dispatch = useDispatch(); // Utilise useDispatch
-  /****Faire le PUT pour modifier le userName en base de données****/
-  // Initialisation de la variable avec le store et onChange pour récupérer la valeur de l'input
+  // Initialisation de la variable avec le store par default et onChange pour récupérer la valeur de l'input
   const [newUserName, setNewUserName] = useState(storeUserProfil.userName);
   const token = loginStore.userToken;
   const handleChangeUserName = (e) => {
@@ -24,16 +24,16 @@ const EditName = () => {
   const handleCancel = () => {
     navigate("/user");
   };
-  
+  /****Faire le PUT pour modifier le userName en base de données****/
   /********************handleForm****************************/
   const handleForm = async (e) => {
     e.preventDefault();
     const updateUserName = await changeUsername(newUserName, token)
-    if (updateUserName) {
+    if (updateUserName.status === 200) {
       dispatch(infoUserName(newUserName));
-      console.log("le user name a bien été modifié", updateUserName);
+      console.log("Le nom d'utilisateur a bien été modifié.", updateUserName.status);
     } else {
-      console.error("une erreur s'est produite");
+      console.error("La mise à jour du nom d'utilisateur a échoué.");
     }
   };
   return (
