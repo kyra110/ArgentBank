@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 //Variables importées pour l'utilisation redux
 import { useDispatch,} from "react-redux";
 import { loginUser,infoUser } from "../../redux/loginSlice";
-import { logUser, getUserProfile } from "../../redux/api"; // Import des fonctions API
+import { logUser, getUserProfile } from "../../core/api"; // Import des fonctions API
 
 
 

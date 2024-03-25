@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { infoUserName } from "../../redux/loginSlice";
 //Importation de la fonction pour le PUT
-import { changeUsername } from "../../redux/api";
+import { changeUsername } from "../../core/api";
 
 const EditName = () => {
   const navigate = useNavigate();

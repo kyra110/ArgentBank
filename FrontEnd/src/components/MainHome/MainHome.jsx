@@ -1,7 +1,7 @@
 import Feature from "../Features/Feature.jsx";
 import Hero from "../Hero/Hero.jsx";
 // Donnés pour le chaque composant feature
-import featuresJson from "../../feature.json";
+import featuresJson from "../../data/feature.json";
 const MainHome = () => {
   const features = featuresJson.features;
   console.log(features);

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Accounts from "../../account";// tableau Json
+import Accounts from "../../data/account";// tableau Json
 import Account from "../Account/Account";//Composant
 import Button from "../Button/Button";
 const User = () => {
