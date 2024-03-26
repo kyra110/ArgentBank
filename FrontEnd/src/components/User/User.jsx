@@ -7,7 +7,8 @@ const User = () => {
   const username = useSelector(state =>(state.login.userProfil.userName))
   // Gestion de l'affichage du formulaire pour modifier son username
   const navigate = useNavigate();
-  const handleToogle = () => {
+  const handleDisplayEdit = (e) => {
+    e.preventDefault()
     navigate("/editUser");
   };
   return (
@@ -18,12 +19,12 @@ const User = () => {
           <br />
           {username}!
         </h1>
-        <Button className={"edit-button"} btnText={"Edit Name"} onClick={handleToogle}></Button>
+        <Button className={"edit-button"} btnText={"Edit Name"} onClick={handleDisplayEdit}></Button>
       </div>
       <h2 className="sr-only">Accounts</h2>
       {Accounts.map((account, index) => (
           <Account
-          key={index}
+          key={"account"+index}
           title={account.title}
           amount={account.amount}
           description={account.description}         

@@ -8,6 +8,7 @@ import EditName from "./components/EditName/EditName.jsx";
 import SecurityRoutes from "./SecurityRoutes.jsx";
 
 
+
 const App = () => {
 const  basename= import.meta.env.MODE  === "production" ? "/ArgentBank/" : "/";
 

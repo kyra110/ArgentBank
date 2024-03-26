@@ -9,7 +9,6 @@ import { loginUser,infoUser } from "../../redux/loginSlice";
 import { logUser, getUserProfile } from "../../core/api"; // Import des fonctions API
 
 
-
 const SignIn = () => {
   // initialisation de variables pour le formulaire de conexion
   const [email, setEmail] = useState("");

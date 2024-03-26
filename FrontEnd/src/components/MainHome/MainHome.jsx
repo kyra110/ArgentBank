@@ -12,7 +12,7 @@ const MainHome = () => {
         <h2 className="sr-only">Features</h2>
         {features.map((feature, index) => (
           <Feature
-          key={index}
+          key={"feature"+index}
           paragraph={feature.paragraph}
           image={feature.image}
           title={feature.title}

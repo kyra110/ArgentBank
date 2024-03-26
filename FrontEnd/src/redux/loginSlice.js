@@ -16,14 +16,11 @@ export const loginSlice = createSlice({
     // Action pour deconecter l'utilisateur
     logoutUser: (state) => {
       state.userToken = null; // Remet a zéro les information user
+      state.userProfil= null;
     },
     //Action pour stoker les données utilisateur
     infoUser: (state, action) => {
       state.userProfil = action.payload; // Stokera les informations avec dispatch
-    },
-    // Action pour deconecter l'utilisateur
-    logoutInfoUser: (state) => {
-      state.userProfil = null; // Remet a zéro les information user
     },
     //Action pour stoker les données utilisateur
     infoUserName: (state, action) => {
