@@ -2,8 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
   p{
     margin-right: 15px;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+  i{
+    margin-right: 5px;
   }
 }
 

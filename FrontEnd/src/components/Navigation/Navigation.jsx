@@ -2,7 +2,7 @@ import logo from "../../assets/images/argentBankLogo.png";
 import { LuLogOut } from "react-icons/lu";
 //Variable pour manipuler le store redux
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { logoutUser } from "../../redux/loginSlice";
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -32,18 +32,23 @@ const Navigation = () => {
         />
         <h1 className="sr-only">Argent Bank</h1>
       </NavLink>
+      <>
       <div className="login">
+        {/* Conditionnellement rendu le lien "Sign In" ou "Sign Out" */}
         {loginStore &&
           loginStore.userProfil &&
           loginStore.userProfil.userName && (
+            <Link to="/user" className="userName">
+            <i className="fa fa-user-circle"></i>
             <p>{loginStore.userProfil.userName}</p>
-          )}
-        {/* Conditionnellement rendu le lien "Sign In" ou "Sign Out" */}
+            </Link>
+          
+            )}
         {token ? (
           <NavLink
-            className="main-nav-item"
-            to="/"
-            onClick={handleRedirectHome}
+          className="main-nav-item"
+          to="/"
+          onClick={handleRedirectHome}
           >
             <LuLogOut />
             Sign Out
@@ -55,6 +60,7 @@ const Navigation = () => {
           </NavLink>
         )}
       </div>
+      </>
     </nav>
   );
 };
