@@ -2,13 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image" href="./faviconArgentBank.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   />
     <title>ArgentBank</title>
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "ProfessionalService",
+        "name": "ArgentBank",
+        "image": "./assets/images/bank-tree.jpeg",
+        "url": "https://kyra110.github.io/ArgentBank/",
+        "priceRange": "50€ - 100€",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "35 avenue des Champs-Élysées",
+          "addressLocality": "Paris",
+          "postalCode": "75000",
+          "addressCountry": "FR"
+        },
+        "telephone": "+33556677889",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "8:30",
+            "closes": "17:00"
+          }
+        ], 
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -9,9 +9,10 @@ import SecurityRoutes from "./SecurityRoutes.jsx";
 
 
 const App = () => {
+const  basename= import.meta.env.MODE  === "production" ? "/ArgentBank/" : "/";
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
     <Header/>
     <Routes>
     <Route path="/" element={<MainHome/>}/>
